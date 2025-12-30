@@ -4,6 +4,7 @@ using namespace std;
 // Make sure op(x, x) = x for all elements x of type T
 // Make sure op is associative
 // Common examples of op inclue min, max, GCD, bitwise AND/OR
+// Assumes a is a nonempty vector
 
 template<typename T, typename F>
 struct SparseTable {
@@ -29,3 +30,18 @@ public:
         return op(table[p][l], table[p][(r - (1 << p) + 1)]);
     }
 };
+
+// Usage:
+
+int main() {
+    vector<int> v = {1, 2, 4, -1, 2};
+
+    // Instantiate with either a functor instance or lambda (like in this example)
+    SparseTable table(v, [](int x, int y) {
+        return max(x, y);
+    });
+
+    int answer = table.query(1, 3);
+
+    return 0;
+}
