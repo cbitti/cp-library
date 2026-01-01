@@ -33,4 +33,31 @@ public:
         else if (k < 0) return 0ll;
         return factorial[n] * inverse_factorial[k] % p * inverse_factorial[n - k] % p;
     }
+    long long perm(long long n, long long k) {
+        if (n < k) return 0ll;
+        else if (k < 0) return 0ll;
+        return factorial[n] * inverse_factorial[n - k] % p;
+    }
+    // p MUST be prime for this implementation of powMod to work
+    long long powMod(long long n, long long k) {
+        n %= p;
+        if (n == 0ll) {
+            assert(k >= 0ll);
+            if (k == 0ll) return 1ll;
+            else return 0ll;
+        }
+        if (n < 0) n += p;
+        k %= p - 1;
+        if (k < 0) k += p - 1;
+        long long result = 1;
+        while (k) {
+            if (k & 1ll) result = (result * n) % p;
+            k >>= 1;
+            n = (n * n) % p;
+        }
+        return result;
+    }
+    long long inverse(long long n) {
+        return powMod(n, -1ll);
+    }
 };
