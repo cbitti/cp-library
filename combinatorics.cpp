@@ -39,6 +39,7 @@ public:
         return factorial[n] * inverse_factorial[n - k] % p;
     }
     // p MUST be prime for this implementation of powMod to work
+    // Accepts negative powers
     long long powMod(long long n, long long k) {
         n %= p;
         if (n == 0ll) {
