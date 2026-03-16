@@ -1,3 +1,6 @@
+#include <bits/stdc++.h>
+using namespace std;
+
 // Assumes T is either int or long long depending on how large the prefix sums can get
 // Will need adjustments for non-primitive elements that form an abelian group
 template <typename T>
